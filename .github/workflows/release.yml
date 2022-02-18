@@ -28,8 +28,7 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Generate temporary npmrc file
-        run: echo -e "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ./.npmrc
-
       - name: Publish
-        run: npm publish
+        run:
+          - echo -e "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >  ${{ github.workspace }}/.npmrc
+          - npm publish
