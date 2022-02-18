@@ -1,6 +1,6 @@
 {
   "name": "picolib",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "My TS utilities.",
   "author": "Hartono Chandra",
   "module": "dist/hiks.esm.js",
