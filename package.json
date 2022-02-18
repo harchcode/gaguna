@@ -1,6 +1,6 @@
 {
   "name": "yoctolib",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "My TS utilities.",
   "author": "Hartono Chandra",
   "module": "dist/hiks.esm.js",
