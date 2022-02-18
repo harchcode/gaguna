@@ -1,6 +1,6 @@
 {
   "name": "gaguna",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "My TS utilities.",
   "author": "Hartono Chandra",
   "module": "dist/hiks.esm.js",
