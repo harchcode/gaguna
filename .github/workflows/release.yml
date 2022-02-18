@@ -29,6 +29,6 @@ jobs:
         run: npm run build
 
       - name: Publish
-        run:
-          - echo -e "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >  ${{ github.workspace }}/.npmrc
-          - npm publish
+        run: |
+          echo -e "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >  ${{ github.workspace }}/.npmrc
+          npm publish
