@@ -32,6 +32,6 @@ export class Observable<T> {
   }
 }
 
-export function state<T>(initialValue: T): Observable<T> {
+export function createObservable<T>(initialValue: T): Observable<T> {
   return new Observable<T>(initialValue);
 }
