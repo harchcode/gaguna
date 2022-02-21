@@ -17,7 +17,7 @@
   "scripts": {
     "start": "tsdx watch",
     "build": "tsdx build",
-    "test": "tsdx test --coverage",
+    "test": "tsdx test --env=./test/custom-test-env.ts --coverage",
     "lint": "eslint src test",
     "lint-staged": "lint-staged",
     "prepare": "husky install",
