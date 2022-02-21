@@ -1,16 +1,16 @@
-import { nextPowerOf2 } from ".";
+import { nextPowerOf2 } from "./math";
 
-type BValue = number | boolean | string;
-type BValueParam = BValue | BValueArray | BValueObject;
-type BValueArray = BValueParam[];
-type BValueObject = null | {
+export type BValue = number | boolean | string;
+export type BValueParam = BValue | BValueArray | BValueObject;
+export type BValueArray = BValueParam[];
+export type BValueObject = null | {
   [x: string]: BValueParam;
 };
 
-type BTypeFunc = () => BType | BTypeArray | BTypeObject;
-type BTypeParam = BType | BTypeArray | BTypeObject | BTypeFunc;
-type BTypeArray = BTypeParam[];
-type BTypeObject = {
+export type BTypeFunc = () => BType | BTypeArray | BTypeObject;
+export type BTypeParam = BType | BTypeArray | BTypeObject | BTypeFunc;
+export type BTypeArray = BTypeParam[];
+export type BTypeObject = {
   [x: string]: BTypeParam;
 };
 
@@ -41,16 +41,14 @@ export const BSIZE = {
   str: 0
 };
 
-export const INITIAL_BUFFER_SIZE = 128;
-
-export const BITS_PER_BYTE = 8;
-export const SIZE_COUNT_BIT = 3;
-export const BYTE_1_WITH_SIZE_REST = BITS_PER_BYTE - SIZE_COUNT_BIT;
-export const BYTE_2_WITH_SIZE_REST = BITS_PER_BYTE * 2 - SIZE_COUNT_BIT;
-export const BYTE_4_WITH_SIZE_REST = BITS_PER_BYTE * 4 - SIZE_COUNT_BIT;
-export const BYTE_1_WITH_SIZE_LIMIT = 1 << BYTE_1_WITH_SIZE_REST;
-export const BYTE_2_WITH_SIZE_LIMIT = 1 << BYTE_2_WITH_SIZE_REST;
-export const BYTE_4_WITH_SIZE_LIMIT = 1 << BYTE_4_WITH_SIZE_REST;
+const INITIAL_BUFFER_SIZE = 128;
+const BITS_PER_BYTE = 8;
+const SIZE_COUNT_BIT = 3;
+const BYTE_1_WITH_SIZE_REST = BITS_PER_BYTE - SIZE_COUNT_BIT;
+const BYTE_2_WITH_SIZE_REST = BITS_PER_BYTE * 2 - SIZE_COUNT_BIT;
+const BYTE_4_WITH_SIZE_REST = BITS_PER_BYTE * 4 - SIZE_COUNT_BIT;
+const BYTE_1_WITH_SIZE_LIMIT = 1 << BYTE_1_WITH_SIZE_REST;
+const BYTE_2_WITH_SIZE_LIMIT = 1 << BYTE_2_WITH_SIZE_REST;
 
 const encoder = new TextEncoder();
 const decoder = new TextDecoder();
