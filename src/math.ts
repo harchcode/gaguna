@@ -33,3 +33,17 @@ export function nextPowerOf2(value: number): number {
 
   return result;
 }
+
+export function getIntDigitCount(value: number): number {
+  if (value === 0) return 1;
+
+  let n = Math.floor(Math.abs(value));
+  let r = 0;
+
+  while (n > 0) {
+    r++;
+    n = Math.floor(n / 10);
+  }
+
+  return r;
+}

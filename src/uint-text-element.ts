@@ -1,5 +1,3 @@
-import { createPool, Pool } from ".";
-
 const numStrs = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 const blank = "";
 
@@ -11,43 +9,60 @@ const blank = "";
  * This class only adds spans element inside the container class, so you can style them anyway you want.
  */
 export class UIntText {
-  spans: Pool<HTMLSpanElement>;
+  spans: HTMLSpanElement[] = [];
+  container: HTMLElement;
 
   constructor(container: HTMLElement, initialLength = 4) {
-    this.spans = createPool<HTMLSpanElement>(() => {
-      const span = document.createElement("span");
-      container.appendChild(span);
+    this.container = container;
 
-      return span;
-    }, initialLength);
+    for (let i = 0; i < initialLength; i++) {
+      this.spans.push(this.createSpan());
+    }
   }
 
-  private clearSpan(span: HTMLSpanElement) {
-    span.textContent = blank;
+  private createSpan() {
+    const span = document.createElement("span");
+    this.container.appendChild(span);
+
+    return span;
   }
 
   set(value: number) {
     const { spans } = this;
 
-    spans.getAll().forEach(this.clearSpan);
-    spans.clear();
-
     if (value === 0) {
-      const span = spans.obtain();
+      const span = spans[spans.length - 1];
       span.textContent = numStrs[0];
 
       return;
     }
 
     let n = Math.floor(Math.abs(value));
+    let i = spans.length - 1;
 
     while (n) {
       const d = n % 10;
 
-      const span = spans.obtain();
-      span.textContent = numStrs[d];
+      if (i < 0) {
+        const span = this.createSpan();
+        spans.unshift(span);
+
+        span.textContent = numStrs[d];
+      } else {
+        const span = spans[i];
+
+        span.textContent = numStrs[d];
+      }
 
       n = Math.floor(n / 10);
+      i--;
+    }
+
+    while (i > 0) {
+      i--;
+
+      const span = spans[i];
+      span.textContent = blank;
     }
   }
 }
