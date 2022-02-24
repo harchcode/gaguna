@@ -6,3 +6,5 @@ export * from "./observable";
 export * from "./tween";
 export * from "./binary-message";
 export * from "./uint-text-element";
+export * from "./gameloop";
+export * from "./random";
