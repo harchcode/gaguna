@@ -34,6 +34,10 @@ export function nextPowerOf2(value: number): number {
   return result;
 }
 
+export function pow2(value: number): number {
+  return (2 << (value - 1)) - 1;
+}
+
 export function getIntDigitCount(value: number): number {
   if (value === 0) return 1;
 

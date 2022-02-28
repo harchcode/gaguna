@@ -8,3 +8,5 @@ export * from "./binary-message";
 export * from "./uint-text-element";
 export * from "./gameloop";
 export * from "./random";
+export * from "./color";
+export * from "./bitset";
