@@ -3,7 +3,7 @@ import { BMReader, BMWriter } from "../src";
 // function testing() {
 //   const w = new BMWriter();
 
-//   w.write("SDFSFWEFRW");
+//   w.write([1, 2, 3]);
 
 //   const b = w.getBuffer();
 //   const tmp = new Uint8Array(b);
@@ -31,6 +31,7 @@ import { BMReader, BMWriter } from "../src";
 describe("read and write", () => {
   it.each`
     value
+    ${null}
     ${5}
     ${3647}
     ${4823823}
@@ -40,6 +41,23 @@ describe("read and write", () => {
     ${true}
     ${false}
     ${"Lorem ipsum dolor sit amet"}
+    ${[1, 2, 3]}
+    ${["sffs", true, 3848, -43]}
+    ${{
+  id: 1042,
+  name: "John",
+  age: -50,
+  isMarried: true
+}}
+    ${{
+  id: 1042,
+  students: [{
+      id: 5
+    }, {
+      id: 34
+    }],
+  mentor: null
+}}
   `("should work correctly for: $value ", ({ value }) => {
     const w = new BMWriter();
     w.write(value);
