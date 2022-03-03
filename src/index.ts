@@ -10,3 +10,5 @@ export * from "./gameloop";
 export * from "./random";
 export * from "./color";
 export * from "./bitset";
+export * from "./dom";
+export * from "./binary-messagepack";

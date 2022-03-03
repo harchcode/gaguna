@@ -17,7 +17,7 @@ export class Bitset {
     }
   }
 
-  expand(neededSize: number) {
+  private expand(neededSize: number) {
     let size = this.values.length * WORD_SIZE;
 
     while (size < neededSize) {
@@ -27,19 +27,22 @@ export class Bitset {
     }
   }
 
-  set(index: number, value = true) {
-    index != 0;
-
+  private getArrayIndex(index: number) {
     this.expand(index + 1);
 
-    const arrayIndex = index >>> WORD_LOG;
-    const posV = 1 << index;
+    return index >>> WORD_LOG;
+  }
 
-    if (value) {
-      this.values[arrayIndex] |= posV;
-    } else {
-      this.values[arrayIndex] &= ~posV;
-    }
+  set(index: number) {
+    const arrayIndex = this.getArrayIndex(index);
+
+    this.values[arrayIndex] |= 1 << index;
+  }
+
+  clear(index: number) {
+    const arrayIndex = this.getArrayIndex(index);
+
+    this.values[arrayIndex] &= ~(1 << index);
   }
 
   any() {
@@ -63,25 +66,15 @@ export class Bitset {
   }
 
   test(index: number) {
-    index |= 0;
+    const arrayIndex = this.getArrayIndex(index);
 
-    this.expand(index + 1);
-
-    const arrayIndex = index >>> WORD_LOG;
-    const posV = 1 << index;
-
-    return (this.values[arrayIndex] & posV) > 0;
+    return (this.values[arrayIndex] & (1 << index)) > 0;
   }
 
   flip(index: number) {
-    index |= 0;
+    const arrayIndex = this.getArrayIndex(index);
 
-    this.expand(index + 1);
-
-    const arrayIndex = index >>> WORD_LOG;
-    const posV = 1 << index;
-
-    this.values[arrayIndex] ^= posV;
+    this.values[arrayIndex] ^= 1 << index;
   }
 
   couht() {
@@ -134,27 +127,19 @@ export class Bitset32 {
   }
 
   test(index: number) {
-    index |= 0;
-
-    const posV = 1 << index;
-
-    return (this.value & posV) > 0;
+    return (this.value & (1 << index)) > 0;
   }
 
   setAll() {
     this.value = MAX;
   }
 
-  set(index: number, value = true) {
-    index |= 0;
+  set(index: number) {
+    this.value |= 1 << index;
+  }
 
-    const posV = 1 << index;
-
-    if (value) {
-      this.value |= posV;
-    } else {
-      this.value &= ~posV;
-    }
+  clear(index: number) {
+    this.value &= ~(1 << index);
   }
 
   flipAll() {
@@ -162,11 +147,7 @@ export class Bitset32 {
   }
 
   flip(index: number) {
-    index |= 0;
-
-    const posV = 1 << index;
-
-    this.value ^= posV;
+    this.value ^= 1 << index;
   }
 
   couht() {

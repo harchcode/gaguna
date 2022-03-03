@@ -1,4 +1,4 @@
-import { getRandomArbitrary } from "../src";
+import { BMReader, BMWriter, getRandomArbitrary } from "../src";
 
 describe("blah", () => {
   it("works", () => {

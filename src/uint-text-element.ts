@@ -9,49 +9,49 @@ const blank = "";
  * This class only adds spans element inside the container class, so you can style them anyway you want.
  */
 export class UIntText {
-  spans: HTMLSpanElement[] = [];
+  texts: Text[] = [];
   container: HTMLElement;
 
   constructor(container: HTMLElement, initialLength = 4) {
     this.container = container;
 
     for (let i = 0; i < initialLength; i++) {
-      this.spans.push(this.createSpan());
+      this.texts.push(this.createText());
     }
   }
 
-  private createSpan() {
-    const span = document.createElement("span");
-    this.container.appendChild(span);
+  private createText() {
+    const text = document.createTextNode(blank);
+    this.container.appendChild(text);
 
-    return span;
+    return text;
   }
 
   set(value: number) {
-    const { spans } = this;
+    const { texts } = this;
 
     if (value === 0) {
-      const span = spans[spans.length - 1];
-      span.textContent = numStrs[0];
+      const text = texts[texts.length - 1];
+      text.textContent = numStrs[0];
 
       return;
     }
 
     let n = Math.floor(Math.abs(value));
-    let i = spans.length - 1;
+    let i = texts.length - 1;
 
     while (n) {
       const d = n % 10;
 
       if (i < 0) {
-        const span = this.createSpan();
-        spans.unshift(span);
+        const text = this.createText();
+        texts.unshift(text);
 
-        span.textContent = numStrs[d];
+        text.textContent = numStrs[d];
       } else {
-        const span = spans[i];
+        const text = texts[i];
 
-        span.textContent = numStrs[d];
+        text.textContent = numStrs[d];
       }
 
       n = Math.floor(n / 10);
@@ -61,8 +61,8 @@ export class UIntText {
     while (i > 0) {
       i--;
 
-      const span = spans[i];
-      span.textContent = blank;
+      const text = texts[i];
+      text.textContent = blank;
     }
   }
 }
