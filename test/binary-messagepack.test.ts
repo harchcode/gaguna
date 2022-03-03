@@ -1,33 +1,5 @@
 import { BMReader, BMWriter } from "../src";
 
-// function testing() {
-//   const w = new BMWriter();
-
-//   w.write([1, 2, 3]);
-
-//   const b = w.getBuffer();
-//   const tmp = new Uint8Array(b);
-
-//   console.log(b);
-
-//   const abc: string[] = [];
-
-//   tmp.forEach(x => {
-//     abc.push(x.toString(2).padStart(8, "0"));
-//   });
-
-//   const xyz = abc.join("-");
-
-//   console.log(xyz);
-
-//   const r = new BMReader(b);
-
-//   const c = r.readNext();
-//   console.log(c);
-// }
-
-// testing();
-
 describe("read and write", () => {
   it.each`
     value
@@ -43,6 +15,9 @@ describe("read and write", () => {
     ${"Lorem ipsum dolor sit amet"}
     ${[1, 2, 3]}
     ${["sffs", true, 3848, -43]}
+    ${3434359434384834348245343n}
+    ${-34734724347346472347342372797647239723821738127412372132763123632173213827132642472316312n}
+    ${1n}
     ${{
   id: 1042,
   name: "John",

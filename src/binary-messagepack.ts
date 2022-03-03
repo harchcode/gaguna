@@ -1,4 +1,4 @@
-import { absInt, minInt, nextPowerOf2 } from ".";
+import { MAX_U32, minInt, nextPowerOf2 } from "./math";
 
 const typeMap = {
   uint: 0,
@@ -50,6 +50,14 @@ export class BMWriter {
     return 4;
   }
 
+  private getBigIntByteSize(n: bigint) {
+    for (let i = 1n; i < MAX_U32; i++) {
+      if (n < 1n << (i * 8n)) return Number(i);
+    }
+
+    return 0;
+  }
+
   private writePartial(n: number, bitSize: number) {
     let processed = 0;
 
@@ -90,6 +98,9 @@ export class BMWriter {
     } else if (typeof n === "number") {
       this.writePartial(n < 0 ? typeMap.int : typeMap.uint, 3);
       this.writeInt(n);
+    } else if (typeof n === "bigint") {
+      this.writePartial(typeMap.bigint, 3);
+      this.writeBigInt(n);
     } else if (typeof n === "boolean") {
       this.writePartial(typeMap.bool, 3);
       this.writeBoolean(n);
@@ -101,7 +112,7 @@ export class BMWriter {
 
   private writeInt(n: number) {
     n |= 0;
-    n = n < 0 ? absInt(n) - 1 : n;
+    n = n < 0 ? -n - 1 : n;
 
     const size = this.getNumByteSize(n);
 
@@ -148,6 +159,23 @@ export class BMWriter {
 
       this.writeString(k);
       this.write(v);
+    }
+  }
+
+  private writeBigInt(n: bigint) {
+    const isNegative = n < 0;
+    n = n < 0 ? -n - 1n : n;
+
+    const size = this.getBigIntByteSize(n);
+
+    this.writeInt(size);
+    this.writeBoolean(isNegative);
+
+    this.expand(this.offset + 1 + size);
+
+    for (let i = size - 1; i >= 0; i--) {
+      const num = Number((n >> BigInt(i * 8)) & 0b11111111n);
+      this.writePartial(num, 8);
     }
   }
 
@@ -207,6 +235,8 @@ export class BMReader {
         return this.readInt(false);
       case typeMap.int:
         return this.readInt(true);
+      case typeMap.bigint:
+        return this.readBigInt();
       case typeMap.bool:
         return this.readBoolean();
       case typeMap.str:
@@ -268,5 +298,20 @@ export class BMReader {
     }
 
     return r;
+  }
+
+  private readBigInt() {
+    const size = this.readInt();
+    const isNegative = this.readBoolean();
+
+    let r = 0n;
+
+    for (let i = 0; i < size; i++) {
+      const num = this.readPartial(8);
+
+      r = (r << 8n) | BigInt(num);
+    }
+
+    return isNegative ? -r - 1n : r;
   }
 }
