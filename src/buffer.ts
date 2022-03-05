@@ -304,7 +304,7 @@ export class BufferWriter {
     const t = schema[0];
 
     if (t === BType.list) {
-      const tt = schema[1];
+      const tt = schema[1] as BSchema;
       const s = schema[2];
       const arr = n as unknown[];
 
@@ -317,7 +317,7 @@ export class BufferWriter {
       return;
     }
 
-    const s = schema[1];
+    const s = schema[1] as number;
 
     if (t === BType.uint) {
       this.writeUint(n as number, s);
@@ -425,7 +425,7 @@ export class BufferReader {
     const t = schema[0];
 
     if (t === BType.list) {
-      const tt = schema[1];
+      const tt = schema[1] as BSchema;
       const s = schema[2];
 
       const r: unknown[] = [];
@@ -439,7 +439,7 @@ export class BufferReader {
       return r;
     }
 
-    const s = schema[1];
+    const s = schema[1] as number;
 
     if (t === BType.uint) {
       return this.readUint(s);
