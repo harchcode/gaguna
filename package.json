@@ -18,6 +18,7 @@
     "start": "tsdx watch",
     "build": "tsdx build",
     "test": "tsdx test --env=./test/custom-test-env.ts --coverage",
+    "test:clear": "tsdx test --clearCache",
     "lint": "eslint src test",
     "lint-staged": "lint-staged",
     "prepare": "husky install",
