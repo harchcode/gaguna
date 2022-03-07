@@ -14,8 +14,7 @@ module.exports = {
     "comma-dangle": ["error", "never"],
     "max-lines": ["error", 600],
     "no-console": ["error", { allow: ["warn", "error", "info"] }],
-    "no-param-reassign": ["error", { props: false }],
-    "@typescript-eslint/no-use-before-define": ["error", { functions: false }],
-    "@typescript-eslint/no-unused-vars": ["error", { varsIgnorePattern: "el" }]
+    "no-param-reassign": "off",
+    "@typescript-eslint/no-use-before-define": ["error", { functions: false }]
   }
 };

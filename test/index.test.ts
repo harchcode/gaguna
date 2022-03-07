@@ -1,7 +1,7 @@
-import { sum } from "../src";
+import { getRandomArbitrary } from "../src";
 
 describe("blah", () => {
   it("works", () => {
-    expect(sum(1, 1)).toEqual(2);
+    expect(getRandomArbitrary(1, 5)).toBeGreaterThan(0);
   });
 });
