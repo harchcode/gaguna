@@ -5,8 +5,6 @@ const blank = "";
  * A class to render unsigned int text.
  * Sometime we don't want to create too much string, especially if the number text is updated many times per second,
  * as it will create many objects and can trigger GC.
- *
- * This class only adds spans element inside the container class, so you can style them anyway you want.
  */
 export class UIntText {
   texts: Text[] = [];
