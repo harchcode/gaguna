@@ -1,7 +1,6 @@
 const FPS = 60;
 const MPF = 1000 / FPS;
 const SPF = MPF * 0.001;
-const raf = requestAnimationFrame || setTimeout;
 
 export class GameLoop {
   private startTime = 0;
@@ -17,14 +16,16 @@ export class GameLoop {
   }
 
   start = () => {
-    this.startTime = Date.now();
-    this.lastTime = this.startTime;
+    requestAnimationFrame(timestamp => {
+      this.startTime = timestamp;
+      this.lastTime = this.startTime;
 
-    raf(this.run);
+      requestAnimationFrame(this.run);
+    });
   };
 
-  private run = () => {
-    const current = Date.now();
+  private run = (timestamp: number) => {
+    const current = timestamp;
     const dt = current - this.lastTime;
 
     this.counter += dt;
@@ -38,6 +39,6 @@ export class GameLoop {
 
     this.drawFn?.();
 
-    raf(this.run);
+    requestAnimationFrame(this.run);
   };
 }

@@ -11,3 +11,5 @@ export * from "./color";
 export * from "./bitset";
 export * from "./dom";
 export * from "./buffer";
+export * from "./trie";
+export * from "./heap";
