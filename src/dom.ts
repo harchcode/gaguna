@@ -22,3 +22,17 @@ export function scaleDisplayToWindow(
   fullWindowElement.style.transformOrigin = "0 0";
   fullWindowElement.style.transform = `scale(${scale})`;
 }
+
+export function cx(...classNames: (string | false | undefined | null)[]) {
+  return classNames.filter(c => c).join(" ");
+}
+
+export function cxa(classNames: (string | false | undefined | null)[]) {
+  return classNames.filter(c => c).join(" ");
+}
+
+export function cxo(classNames: Record<string, boolean | undefined | null>) {
+  return Object.keys(classNames)
+    .filter(k => classNames[k])
+    .join(" ");
+}
