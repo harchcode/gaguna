@@ -1,3 +1,4 @@
+import { describe, it, expect } from "vitest";
 import { getRandomArbitrary } from "../src";
 
 describe("blah", () => {

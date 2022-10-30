@@ -3,24 +3,30 @@
   "version": "1.1.0",
   "description": "My TS utilities.",
   "author": "Hartono Chandra",
-  "module": "dist/gaguna.esm.js",
+  "main": "dist/gaguna.umd.js",
+  "module": "dist/gaguna.mjs",
   "license": "MIT",
-  "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
+  "exports": {
+    ".": {
+      "import": "./dist/gaguna.mjs",
+      "require": "./dist/gaguna.umd.js"
+    }
+  },
   "engines": {
-    "node": ">=12"
+    "node": ">=14"
   },
   "sideEffects": false,
   "scripts": {
-    "start": "tsdx watch",
-    "build": "tsdx build",
-    "test": "tsdx test --env=./test/custom-test-env.ts --coverage",
-    "test:clear": "tsdx test --clearCache",
-    "lint": "eslint src test",
+    "start": "vite",
+    "dev": "vite",
+    "build": "vite build && npm run build-typedef",
+    "build-typedef": "tsc ./src/vite-env.d.ts ./src/index.ts --declaration --emitDeclarationOnly --target ESNext --esModuleInterop --outDir dist",
+    "test": "vitest",
+    "lint": "eslint src test example",
     "lint-staged": "lint-staged",
     "prepare": "husky install",
     "size": "size-limit",
@@ -29,24 +35,26 @@
     "generate-docs": "typedoc --out docs src/index.ts"
   },
   "devDependencies": {
-    "@size-limit/preset-small-lib": "^7.0.8",
-    "@typescript-eslint/eslint-plugin": "^5.12.0",
-    "@typescript-eslint/parser": "^5.12.0",
-    "eslint": "^8.9.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "husky": "^7.0.4",
-    "lint-staged": "^12.3.4",
-    "prettier": "^2.5.1",
-    "size-limit": "^7.0.8",
-    "standard-version": "^9.3.2",
-    "tsdx": "^0.14.1",
-    "tslib": "^2.3.1",
-    "typedoc": "^0.22.11",
-    "typescript": "^4.5.5"
+    "@size-limit/preset-small-lib": "^8.1.0",
+    "@types/node": "^18.11.7",
+    "@typescript-eslint/eslint-plugin": "^5.40.1",
+    "@typescript-eslint/parser": "^5.40.1",
+    "eslint": "^8.26.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.1",
+    "jsdom": "^20.0.1",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1",
+    "size-limit": "^8.1.0",
+    "standard-version": "^9.5.0",
+    "typedoc": "^0.23.17",
+    "typescript": "^4.8.4",
+    "vite": "^3.2.1",
+    "vitest": "^0.24.3"
   },
   "lint-staged": {
-    "{src,test}/**/*.{js,ts}": [
+    "{src,test,example}/**/*.{js,ts}": [
       "eslint"
     ]
   },
