@@ -6,9 +6,15 @@ import { resolve } from "path";
 
 export default defineConfig({
   test: {
+    environment: "jsdom",
     globals: true,
-    environment: "jsdom"
-    // setupFiles: "./src/setupTests.ts"
+    coverage: {
+      include: ["src/**/*.ts"],
+      statements: 0,
+      branches: 0,
+      functions: 0,
+      lines: 0
+    }
   },
   build: {
     target: "ESNext",

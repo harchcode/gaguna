@@ -5,6 +5,7 @@
     "module": "ESNext",
     "lib": ["ESNext", "DOM"],
     "moduleResolution": "Node",
+    "types": ["vitest/globals"],
     "strict": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -13,8 +14,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
-    "skipLibCheck": true,
-    "types": ["vitest/globals"]
+    "skipLibCheck": true
   },
   "include": ["src"]
 }

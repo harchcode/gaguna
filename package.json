@@ -25,7 +25,7 @@
     "dev": "vite",
     "build": "vite build && npm run build-typedef",
     "build-typedef": "tsc ./src/vite-env.d.ts ./src/index.ts --declaration --emitDeclarationOnly --target ESNext --esModuleInterop --outDir dist",
-    "test": "vitest",
+    "test": "vitest --coverage",
     "lint": "eslint src test example",
     "lint-staged": "lint-staged",
     "prepare": "husky install",
@@ -39,6 +39,7 @@
     "@types/node": "^18.11.7",
     "@typescript-eslint/eslint-plugin": "^5.40.1",
     "@typescript-eslint/parser": "^5.40.1",
+    "@vitest/coverage-c8": "^0.24.3",
     "eslint": "^8.26.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
@@ -67,15 +68,5 @@
       "path": "dist/gaguna.esm.js",
       "limit": "10 KB"
     }
-  ],
-  "jest": {
-    "coverageThreshold": {
-      "global": {
-        "branches": 0,
-        "functions": 0,
-        "lines": 0,
-        "statements": 0
-      }
-    }
-  }
+  ]
 }
