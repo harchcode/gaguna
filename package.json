@@ -19,6 +19,7 @@
   "engines": {
     "node": ">=14"
   },
+  "type": "module",
   "sideEffects": false,
   "scripts": {
     "start": "vite",
