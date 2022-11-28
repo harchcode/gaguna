@@ -3,8 +3,8 @@
   "version": "2.0.0",
   "description": "My TS utilities.",
   "author": "Hartono Chandra",
-  "main": "dist/gaguna.umd.js",
-  "module": "dist/gaguna.mjs",
+  "main": "dist/gaguna.umd.cjs",
+  "module": "dist/gaguna.js",
   "license": "MIT",
   "typings": "dist/index.d.ts",
   "files": [
@@ -12,8 +12,8 @@
   ],
   "exports": {
     ".": {
-      "import": "./dist/gaguna.mjs",
-      "require": "./dist/gaguna.umd.js"
+      "import": "./dist/gaguna.js",
+      "require": "./dist/gaguna.umd.cjs"
     }
   },
   "engines": {
@@ -62,11 +62,11 @@
   },
   "size-limit": [
     {
-      "path": "dist/gaguna.umd.js",
+      "path": "dist/gaguna.umd.cjs",
       "limit": "10 KB"
     },
     {
-      "path": "dist/gaguna.mjs",
+      "path": "dist/gaguna.js",
       "limit": "10 KB"
     }
   ]

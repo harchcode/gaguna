@@ -13,3 +13,4 @@ export * from "./dom";
 export * from "./buffer";
 export * from "./trie";
 export * from "./heap";
+export * from "./quad";
