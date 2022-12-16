@@ -1,6 +1,6 @@
 # Gaguna
 
-This is my collection of useful utils that I often use in my web projects.
+This is my collection of useful (maybe) utils that I often use in my web projects. The name Gaguna comes from common Indonesian words "ga guna" which means useless, and this library is surely useless for most of you xD
 
 ## Features
 
