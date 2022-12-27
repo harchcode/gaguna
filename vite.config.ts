@@ -7,9 +7,11 @@ import { resolve } from "path";
 export default defineConfig({
   test: {
     environment: "jsdom",
+    watch: false,
     globals: true,
     coverage: {
       include: ["src/**/*.ts"],
+      all: true,
       statements: 0,
       branches: 0,
       functions: 0,

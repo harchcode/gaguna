@@ -77,7 +77,7 @@ export class Bitset {
     this.values[arrayIndex] ^= 1 << index;
   }
 
-  couht() {
+  count() {
     let r = 0;
 
     for (let i = 0; i < this.values.length; i++) {
@@ -150,7 +150,7 @@ export class Bitset32 {
     this.value ^= 1 << index;
   }
 
-  couht() {
+  count() {
     let r = 0;
     let n = this.value;
 
